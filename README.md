@@ -1,12 +1,15 @@
 
-Using terraform to automate the manual steps outlined [here](https://docs.pivotal.io/pks/1-7/gcp-cluster-load-balancer.html).
+Basic idea
 
+- The pks control plane is installed.
+- You wish to create a pks cluster.
+- The pks cli will create the cluster, but it won't create the lb, firewall rule, dns entry, etc..
 
-Basic idea:
+You could do that manually via the steps outlined [here](https://docs.pivotal.io/pks/1-7/gcp-cluster-load-balancer.html).
 
-- the pks control plane is installed
-- you wish to create a pks cluster
-- the pks cli will create the cluster, but it won't create the lb, firewall rule, dns entry, etc..
+Or:
 
-this terraform script will do that for you.
-
+1. Configure your `terraform.tfvars` file
+1. Apply the terraform in this repository
+1. Create the cluster with the pks cli
+1. Run the script `./add-master-to-lb.sh _cluster-name_`
