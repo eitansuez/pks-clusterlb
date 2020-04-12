@@ -12,4 +12,8 @@ Or:
 1. Configure your `terraform.tfvars` file
 1. Apply the terraform in this repository
 1. Create the cluster with the pks cli
-1. Run the script `./add-master-to-lb.sh _cluster-name_`
+1. Run the script `./add-master-to-lb.sh <cluster-name>`
+
+Notes:
+
+- jq must be installed
