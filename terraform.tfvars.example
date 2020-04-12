@@ -1,0 +1,13 @@
+project = "YOUR-GCP-PROJECT"
+region = "YOUR-GCP-REGION"
+availability_zones = ["YOUR-GCP-ZONE-1", "YOUR-GCP-ZONE-2", "YOUR-GCP-ZONE-3"]
+
+environment_name = "YOUR-ENVIRONMENT-NAME"
+hosted_zone = "foo"
+cluster_name = "bar-cluster"
+network_name = "some-pcf-network"
+
+service_account_key = <<SERVICE_ACCOUNT_KEY
+"YOUR-SERVICE-ACCOUNT-KEY"
+SERVICE_ACCOUNT_KEY
+
