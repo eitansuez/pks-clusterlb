@@ -86,15 +86,10 @@ resource "google_compute_firewall" "pks-cluster-lb" {
 
 locals {
   stable_config = {
-    environment_name    = var.environment_name
     cluster_name        = var.cluster_name
-    service_account_key = var.service_account_key
-    project             = var.project
-    region              = var.region
-
     pks_cluster_target_pool_name = google_compute_target_pool.pks-cluster-lb.name
     pks_cluster_dns_domain       = replace(replace(google_dns_record_set.pks-cluster.name, "/\\.$/", ""), "*.", "")
-    pks_cluster_target_tag       = ["${var.cluster_name}-lb"]
+    pks_cluster_target_tag       = "${var.cluster_name}-lb"
   }
 }
 
