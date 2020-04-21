@@ -22,8 +22,14 @@ FIREWALL_TAG_NAME="${CLUSTER_NAME}-lb"
 #INSTANCE_ID=`gcloud compute instances list --filter="tags:$NETWORK_TAG" --format='value(name)'`
 VM_JSON=`gcloud compute instances list --filter="tags:$NETWORK_TAG" --format='json(name,zone)'`
 
-INSTANCE_ID=`echo $VM_JSON | jq -r .[0].name`
-ZONE=`echo $VM_JSON | jq -r .[0].zone`
+NUM_MASTERS=`echo $VM_JSON | jq -r length`
+echo "number of master nodes is $NUM_MASTERS"
+
+for (( i=0; i<$NUM_MASTERS; i++ ))
+do
+
+INSTANCE_ID=`echo $VM_JSON | jq -r .[$i].name`
+ZONE=`echo $VM_JSON | jq -r .[$i].zone`
 echo "master node for cluster $CLUSTER_NAME is $INSTANCE_ID in $ZONE"
 
 echo "adding tag $FIREWALL_TAG_NAME to master node.."
@@ -34,3 +40,5 @@ gcloud compute target-pools add-instances ${TARGET_POOL_NAME} --instances=${INST
 
 # echo "master node network tags.."
 # gcloud compute instances list --filter="name:${INSTANCE_ID}" --format='table(name,tags.list())'
+
+done
