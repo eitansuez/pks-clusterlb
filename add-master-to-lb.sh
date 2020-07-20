@@ -14,7 +14,7 @@ if [ -z $CLUSTER_NAME ]; then
   exit 1
 fi
 
-UUID=`pks cluster $CLUSTER_NAME --json | jq -r .uuid`
+UUID=`tkgi cluster $CLUSTER_NAME --json | jq -r .uuid`
 NETWORK_TAG="service-instance-${UUID}-master"
 TARGET_POOL_NAME="${CLUSTER_NAME}-lb"
 FIREWALL_TAG_NAME="${CLUSTER_NAME}-lb"
